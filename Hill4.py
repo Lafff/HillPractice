@@ -22,7 +22,7 @@ def solve(open_text,key):
 	for i in range(0, len(open_text),+4):
 		cycle_count = 1
 		block = np.array((dict[open_text[i]], dict[open_text[i+1]],dict[open_text[i+2]],dict[open_text[i+3]]))
-		result+= '<p><span style="color:#ed9393;">Текущий блок: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
+		result+= f'<p><span style="color:#ed9393;">Текущий блок {cycle_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
 		for j in key_matrica:
 			result += f'C<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} + {j[3]}*{block[3]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} + {j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
 			cycle_count+=1
@@ -36,7 +36,7 @@ def solve(open_text,key):
 	for i in range(0, len(closed_text),+4):
 		cycle_count = 1
 		block = np.array((dict[closed_text[i]], dict[closed_text[i+1]],dict[closed_text[i+2]],dict[closed_text[i+3]]))
-		result+= '<p><span style="color:#ed9393;">Текущий блок: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
+		result+= f'<p><span style="color:#ed9393;">Текущий блок {cycle_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
 		for j in obr_matrix:
 			result += f'P<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} + {j[3]}*{block[3]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} + {j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
 			cycle_count+=1
