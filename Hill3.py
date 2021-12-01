@@ -18,10 +18,12 @@ def solve(open_text,key):
 		open_text += ' ' * (3 - (len(open_text) % 3))
 
 	result += '<div style="text-align:center;">!!!-------------------КОДИРОВАНИЕ-------------------!!!</div><br>'
+	block_count = 1
 	for i in range(0, len(open_text),+3):
 		cycle_count = 1
 		block = np.array((dict[open_text[i]], dict[open_text[i+1]],dict[open_text[i+2]]))
-		result+= f'<p><span style="color:#ed9393;">Текущий блок {cycle_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + '</p>'
+		result+= f'<p><span style="color:#ed9393;">Текущий блок {block_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + '</p>'
+		block_count += 1
 		for j in key_matrica:
 			result += f'C<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2])%64}<br>'
 			cycle_count+=1
@@ -32,10 +34,12 @@ def solve(open_text,key):
 	result +='<div style="text-align:center;margin-top:40px;">Закрытый текст:   ' + closed_text + '</div>'
 
 	result +='<div style="text-align:center;margin-top:40px;">!!!-------------------ДЕКОДИРОВАНИЕ-------------------!!!</div>'
+	block_count = 1
 	for i in range(0, len(closed_text),+3):
 		cycle_count = 1
 		block = np.array((dict[closed_text[i]], dict[closed_text[i+1]],dict[closed_text[i+2]]))
-		result+= f'<p><span style="color:#ed9393;">Текущий блок {cycle_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + '</p>'
+		result+= f'<p><span style="color:#ed9393;">Текущий блок {block_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + '</p>'
+		block_count += 1
 		for j in obr_matrix:
 			result += f'P<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2])%64}<br>'
 			cycle_count+=1
