@@ -46,7 +46,7 @@ def solve(open_text,key):
 		for j in obr_matrix.dot(block):
 			for key,value in dict.items():
 				if j%64 == value:
-					if value == ' ':
+					if value == 58:
 						decoded_text = decoded_text + '_'
 					else:
 						decoded_text = decoded_text + key
