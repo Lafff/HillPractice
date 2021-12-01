@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8">
+        <script type="text/javascript">
+            function GetAnswer(){
+                song = document.getElementsByClassName("song")[0].value;
+                keymatrix = document.getElementsByClassName("keymatrix")[0].value;
+                const request = new XMLHttpRequest();
+                const url = "http://127.0.0.1:8000/Hill"
+                const params = "song=" + song+ "&keymatrix=" + keymatrix;
+                request.open('POST',url,true)
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.addEventListener("readystatechange", () => {
+
+                    if (request.readyState === 4 && request.status === 200) {
+                        var changingField = document.getElementById('ajaxid');
+                        changingField.innerHTML = request.responseText;
+                    }
+                });
+                response = request.send(params);
+            }
+            function GetMatrix() {
+                size = document.getElementById("size").value;
+                var changingField = document.getElementById('matrixResult');
+                if (size === '3' || size === '4') {
+                    const request = new XMLHttpRequest();
+                    const url = "http://127.0.0.1:8000/generate"
+                    const params = "size=" + size;
+                    request.open('POST', url, true)
+                    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    request.addEventListener("readystatechange", () => {
+                        if (request.readyState === 4 && request.status === 200) {
+                            if (request.responseText == "Матрица в виде строки:") {
+                                changingField.innerHTML = 'Не удалось подобрать матрицу за 30 секунд. Можете попробовать еще раз.'
+                            } else {
+                                changingField.innerHTML = request.responseText;
+                            }
+                        }
+                    });
+                    response = request.send(params);
+                    changingField.innerHTML = 'Ожидайте';
+                }
+                else{
+                    changingField.innerHTML = 'Вы ввели неверное число. Попробуйте ввести заново.'
+                }
+            }
+        </script>
+
+        <style>
+            body{
+                text-align: center;
+                background-color:#454545 ;
+                font-size: 20px;
+                color: rgb(255, 255, 255) ;
+            }
+
+            .border_bottom{
+                border-bottom: white 0.125em solid;
+            }
+            input{
+                margin-top: 3px;
+                padding: 10px;
+                line-height: 20px;
+                border-radius: 8px;
+                font-size: 15px;
+            }
+            ::-webkit-input-placeholder {      
+                text-overflow: ellipsis;
+                text-indent: 0px;
+                transition: text-indent 0.3s ease;
+                color: black;
+                text-align: center;
+                font-size: 15px;
+                
+            }
+            :-ms-input-placeholder {
+                text-overflow: ellipsis;
+                color: black;
+                text-align: center;
+                font-size: 15px;
+            }
+            ::-moz-placeholder{
+                text-overflow: ellipsis;
+                color: black;
+                text-align: center;
+                font-size: 15px;
+            }
+            :-moz-placeholder{
+                text-overflow: ellipsis;
+                color: black;
+                text-align: center;
+                font-size: 15px;
+            }
+            a{
+                font-size: 23px;
+                color : #b89f5f;
+                border: none !important;
+                text-decoration: none !important;
+            }
+
+
+        </style>
+    </head>
+
+    <title>Шифр Хилла</title>
+    <body>
+        
+        <p>Данная страница предназначена для автоматического решения курсовой работы по теме "Шифр Хилла".
+        <p>Перед началом работы необходимо иметь открытый текст и ключевую матрицу. <nobr class="border_bottom">(!Важно: для корректной работы определитель матрицы должен быть равным 1)</nobr>
+
+
+        <div style="margin-top: 0.1em; text-align: center; " >При необходимости можете сгенерировать матрицу. Но это может длиться очень долго(Бывает по пол часа и дольше).Введите размерность матрицы.</div>
+        <form name="generator" id="matrixGenerator" method="post" action="">
+            <input id="size" type="text" size="10" placeholder="3 или 4"><nobr><input type="button" style="height: 46px; width:120px; margin-left: 10px;" value="Найти" onclick="GetMatrix()"></nobr>
+        </form>
+        <nobr><span id="matrixResult"></span></nobr>
+        <div style="text-align: center; " >Введите открытый текст:</div>
+        <form name="Hill" method="post" action="">
+            <input class= "song" type="text" size="100" placeholder="I AM NOT ALWAYS PERFECT, BUT I AM ALWAYS MYSELF" >
+            <div style="margin-top: 1.5em; ">Полностью введите ключевую матрицу построчно в формате "25 19 40 35 82 94 28 35 15 34 27 16 14 45 23 33"<br>Вы можете ввести как и матрицу 3 на 3, так и 4 на 4.</div>
+            <input class="keymatrix" type="text" size="100" placeholder="25 19 40 35 82 94 28 35 15 34 27 16 14 45 23 33">
+            <div style="margin-top: 1.5em;"></div>
+            <input type="button" style="height: 60px; width:120px ;" value="Решить" onclick="GetAnswer()">
+        </form>
+        <div id="ajaxid">Здесь появится ответ.</div>
+    </body>
+
+</html>
