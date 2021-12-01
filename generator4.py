@@ -13,5 +13,5 @@ async def generate():
 			return result
 		print(str(np.linalg.det(arr)) + ' for FOUR')
 		await asyncio.sleep(0.01)
-		if time.time() - now > 30:
+		if time.time() - now > 20:
 			return result

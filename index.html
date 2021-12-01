@@ -33,7 +33,7 @@
                     request.addEventListener("readystatechange", () => {
                         if (request.readyState === 4 && request.status === 200) {
                             if (request.responseText == "Матрица в виде строки:") {
-                                changingField.innerHTML = 'Не удалось подобрать матрицу за 30 секунд. Можете попробовать еще раз.'
+                                changingField.innerHTML = 'Не удалось подобрать матрицу за 20 секунд. Можете попробовать еще раз.'
                             } else {
                                 changingField.innerHTML = request.responseText;
                             }
