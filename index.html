@@ -8,7 +8,7 @@
                 song = document.getElementsByClassName("song")[0].value;
                 keymatrix = document.getElementsByClassName("keymatrix")[0].value;
                 const request = new XMLHttpRequest();
-                const url = "http://127.0.0.1:8000/Hill"
+                const url = "https://dry-mesa-10632.herokuapp.com/Hill"
                 const params = "song=" + song+ "&keymatrix=" + keymatrix;
                 request.open('POST',url,true)
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -26,7 +26,7 @@
                 var changingField = document.getElementById('matrixResult');
                 if (size === '3' || size === '4') {
                     const request = new XMLHttpRequest();
-                    const url = "http://127.0.0.1:8000/generate"
+                    const url = "https://dry-mesa-10632.herokuapp.com/generate"
                     const params = "size=" + size;
                     request.open('POST', url, true)
                     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
