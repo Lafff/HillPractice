@@ -26,7 +26,7 @@ def solve(open_text,key):
 		result+= f'<p><span style="color:#ed9393;">Текущий блок {block_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
 		block_count += 1
 		for j in key_matrica:
-			result += f'C<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} + {j[3]}*{block[3]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} + {j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
+			result += f'C<sub>{cycle_count}</sub> = {j[0]}*{block[0]}+{j[1]}*{block[1]}+{j[2]}*{block[2]}+{j[3]}*{block[3]} = {j[0]*block[0]}+{j[1]*block[1]}+{j[2]*block[2]}+{j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
 			cycle_count+=1
 		for j in key_matrica.dot(block):
 			for key,value in dict.items():
@@ -43,7 +43,7 @@ def solve(open_text,key):
 		result+= f'<p><span style="color:#ed9393;">Текущий блок {block_count}: </span>' + str(block[0]) + ' '+ str(block[1]) + ' '+ str(block[2]) + ' '+ str(block[3]) + '</p>'
 		block_count += 1
 		for j in obr_matrix:
-			result += f'P<sub>{cycle_count}</sub> = {j[0]}*{block[0]} + {j[1]}*{block[1]} + {j[2]}*{block[2]} + {j[3]}*{block[3]} = {j[0]*block[0]} + {j[1]*block[1]} + {j[2]*block[2]} + {j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
+			result += f'P<sub>{cycle_count}</sub> = {j[0]}*{block[0]}+{j[1]}*{block[1]}+{j[2]}*{block[2]}+{j[3]}*{block[3]}={j[0]*block[0]}+{j[1]*block[1]}+{j[2]*block[2]}+{j[3]*block[3]} = {j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3]}(mod64) = {(j[0]*block[0] + j[1]*block[1] + j[2]*block[2] + j[3]*block[3])%64}<br>'
 			cycle_count+=1
 		for j in obr_matrix.dot(block):
 			for key,value in dict.items():
