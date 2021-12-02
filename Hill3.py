@@ -31,7 +31,9 @@ def solve(open_text,key):
 			for key,value in dict.items():
 				if j%64 == value:
 					closed_text = closed_text + key
-	result +='<div style="text-align:center;margin-top:40px;">Закрытый текст:   ' + closed_text + '</div>'
+	html_closed_text = ''.join([i if i != ' ' else '_' for i in closed_text])
+
+	result +='<div style="text-align:center;margin-top:40px;">Закрытый текст:   ' + html_closed_text + '</div>'
 
 	result +='<div style="text-align:center;margin-top:40px;">!!!-------------------ДЕКОДИРОВАНИЕ-------------------!!!</div>'
 	block_count = 1
